@@ -1,5 +1,5 @@
 {
-  "appId": "app.filas.sam",
+  "appId": "com.filas.sam",
   "appName": "Fila SAM",
   "webDir": "dist",
   "server": {
