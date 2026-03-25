@@ -22,7 +22,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
       - name: Build web app
         run: npm run build
@@ -37,7 +37,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Clean old Android folder (importante após mudar appId)
+      - name: Clean old Android folder
         run: rm -rf android
 
       - name: Add and sync Capacitor Android
