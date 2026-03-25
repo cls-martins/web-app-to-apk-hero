@@ -8,12 +8,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # ← silencia o aviso amarelo
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 24 (evita warning de depreciação)
+      - name: Setup Node.js 24
         uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -37,8 +39,11 @@ jobs:
 
       - name: Add and sync Capacitor Android
         run: |
-          npx cap add android || echo "Android platform already exists"
+          npx cap add android || echo "✅ Android já existe"
           npx cap sync android
+
+      - name: Debug - Verificar pasta android
+        run: ls -la android
 
       - name: Build Debug APK
         run: |
