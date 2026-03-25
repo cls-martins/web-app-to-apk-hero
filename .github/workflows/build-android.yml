@@ -27,11 +27,11 @@ jobs:
       - name: Build web app
         run: npm run build
 
-      - name: Setup Java 17
+      - name: Setup Java 21 (obrigatório para este projeto)
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: 17
+          java-version: 21
           cache: 'gradle'
 
       - name: Setup Android SDK
@@ -45,15 +45,10 @@ jobs:
           npx cap add android
           npx cap sync android
 
-      - name: Force Java 17 in Gradle (importante!)
-        run: |
-          echo "org.gradle.java.home=$(dirname $(dirname $(readlink -f $(which java))))" >> android/gradle.properties
-          echo "org.gradle.jvmargs=-Xmx2048m" >> android/gradle.properties
-
       - name: Build Debug APK
         run: |
           cd android
-          ./gradlew assembleDebug --stacktrace --info
+          ./gradlew assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
