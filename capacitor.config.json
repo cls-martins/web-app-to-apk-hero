@@ -1,0 +1,9 @@
+{
+  "appId": "app.filas.sam",
+  "appName": "Fila SAM",
+  "webDir": "dist",
+  "server": {
+    "url": "https://fila-sam.vercel.app/",
+    "cleartext": true
+  }
+}
