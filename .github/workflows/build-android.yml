@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node.js 20 (com force para evitar warning)
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -35,11 +35,10 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Add Android platform with Capacitor
-        run: npx cap add android
-
-      - name: Sync Capacitor
-        run: npx cap sync android
+      - name: Add and sync Android with Capacitor
+        run: |
+          npx cap add android
+          npx cap sync android
 
       - name: Build Debug APK
         run: |
@@ -49,5 +48,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: apk-debug
+          name: app-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
